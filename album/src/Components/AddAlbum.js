@@ -5,16 +5,18 @@ import axios from "axios";
 
 class AddAlbum extends Component {
   state = {
-    album: "",
-    artist: "",
-    albumCover: null,
+   albumCover: null,
+   album: "",
+   artist: "",
   };
 
   fileClickHandleChange = (e) => {
-    const currFile = e.target.files[0];
+    const file = e.target.files[0];
     this.setState({
-      albumCover: URL.createObjectURL(currFile),
+      albumCover: URL.createObjectURL(file),
     });
+    console.log(file);
+  //The URL.createObjectURL() static method creates a DOMString containing a URL representing the object given in the parameter.  
   };
 
   handleSubmit = (e) => {
@@ -30,10 +32,12 @@ class AddAlbum extends Component {
     const albumList = this.props.onAdd(newAlbum);
 
     this.setState({
-      album: "",
-      artist: "",
+     
       albumCover: null,
       albumList: albumList,
+      album: "",
+      artist: "",
+      
     });
 
 
@@ -43,12 +47,12 @@ class AddAlbum extends Component {
     formdata.append("albumTitle", newAlbum.album);
     formdata.append("artist", newAlbum.artist);
 
-    // let config = {
-    //   Headers: {
-    //     Authorization: "Client-ID ec1da133519fad4",
-    //     Accept: "application/json",
-    //   },
-    // };
+    let config = {
+      Headers: {
+        Authorization: "Client-ID e25d086f3e906eb",
+        Accept: "application/json",
+      },
+    };
 
 
 
@@ -87,7 +91,6 @@ class AddAlbum extends Component {
             />
             <input
               type="file"
-              accept="image/*"
               name="albumCover"
               onChange={this.fileClickHandleChange}
               required={true}
@@ -100,3 +103,4 @@ class AddAlbum extends Component {
   }
 }
 export default AddAlbum;
+//client secret:17f5c378988c6895608c7c62ff1c88aa4a6bc0a2

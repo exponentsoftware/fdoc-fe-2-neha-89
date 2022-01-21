@@ -8,12 +8,14 @@ class App extends Component {
   state = {
     albums: AlbumData,
   };
+//Spread syntax (...) allows an iterable such as an array expression or string to be expanded in places where zero or more arguments (for function calls) or elements (for array literals) are expected,
+// or an object expression to be expanded in places where zero or more key-value pairs (for object literals) are expected.
 
   addAlbum = (albumItem) => {
     const newAlbumList = [albumItem, ...this.state.albums];
     return this.setState({ albums: newAlbumList });
   };
-
+//setState:we use the setState() method to change the state object. It ensures that the component has been updated and calls for re-rendering of the component.
   removeAlbum = (id) => {
     const removeArr = [...this.state.albums].filter((albumItem) => {
       return albumItem.id !== id;
